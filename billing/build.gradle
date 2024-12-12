@@ -1,5 +1,5 @@
 dependencies {
-    implementation project(':common')
+    implementation project(':common')  // common쪽의 library를 쓰겠다고 의존
 }
 
 bootJar {

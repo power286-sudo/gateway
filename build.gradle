@@ -4,6 +4,8 @@ plugins {
     id 'io.spring.dependency-management' version '1.1.5' apply false
 }
 
+
+// 루트랑 서브에도 다 적용된는 것
 allprojects {
     group = 'com.telecom.gateway'
     version = '0.0.1-SNAPSHOT'
@@ -13,6 +15,7 @@ allprojects {
     }
 }
 
+// 서브 프로젝트에만 적용 되는것
 subprojects {
     apply plugin: 'java'
     apply plugin: 'org.springframework.boot'
@@ -27,7 +30,7 @@ subprojects {
         annotationProcessor 'org.projectlombok:lombok'
     }
 }
-
+// common 과 scg를 빼고 적용 하겠다.
 configure(subprojects.findAll { !it.name.equals('scg') && !it.name.equals('common') }) {
     dependencies {
         implementation 'org.springframework.boot:spring-boot-starter-web'
@@ -35,7 +38,7 @@ configure(subprojects.findAll { !it.name.equals('scg') && !it.name.equals('commo
         implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
     }
 }
-
+// 실행 jar 가 아니라 라이브러리용
 project(':common') {
     bootJar.enabled = false
     jar.enabled = true
